@@ -1,0 +1,581 @@
+/* --- NEW COLOR PALETTE (unchanged) --- */
+:root {
+    --mindaro: #d9ed92ff;
+    --light-green: #b5e48cff;
+    --light-green-2: #99d98cff;
+    --emerald: #76c893ff;
+    --keppel: #52b69aff;
+    --verdigris: #34a0a4ff;
+    --bondi-blue: #168aadff;
+    --cerulean: #1a759fff;
+    --lapis-lazuli: #1e6091ff;
+    --indigo-dye: #184e77ff;
+
+    /* Re-mapping existing variables to the new palette for consistency */
+    --primary-color: var(--keppel); /* Teal-green for main actions/links */
+    --secondary-color: var(--bondi-blue); /* Medium blue for secondary text/accents */
+    --accent-color: var(--emerald); /* Emerald green for headings/highlights */
+
+    --bg-light: var(--mindaro); /* Lightest green-yellow for background areas */
+    --bg-card: var(--light-green); /* Light green for main content cards (e.g. list/detail pages) */
+
+    --text-color-dark: var(--indigo-dye); /* Very dark blue for main text for contrast */
+    --text-color-light: var(--cerulean); /* Slightly lighter blue for secondary text */
+
+    --header-bg: var(--light-green-2); /* Medium light green for header/footer background */
+
+    --border-color: rgba(24, 78, 119, 0.3); /* Translucent indigo-dye for borders */
+    --shadow-subtle: rgba(24, 78, 119, 0.15); /* Translucent indigo-dye for subtle shadows */
+    --shadow-card: rgba(24, 78, 119, 0.25); /* Translucent indigo-dye for card shadows */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color-dark); /* Use dark text by default */
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+
+    /* --- Simple body background (animation moved to home-content) --- */
+    background: linear-gradient(180deg, var(--mindaro) 0%, var(--light-green) 100%); /* Light green gradient for overall body */
+    background-attachment: fixed;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    position: relative;
+}
+
+/* --- General Pseudo-elements Reset (ensure they are OFF unless specifically used) --- */
+body::before, body::after {
+    content: none;
+    animation: none;
+    background-image: none;
+    background-color: transparent;
+    transform: none;
+    filter: none;
+    box-shadow: none;
+    opacity: 1;
+    position: fixed; /* Keep fixed position but inactive */
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+
+.main-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--bg-card); /* Light green for main content areas */
+    box-shadow: 0 0 20px var(--shadow-subtle);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- Navbar/Header Styles (unchanged in colors) --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px var(--shadow-subtle);
+    flex-wrap: wrap;
+}
+
+.site-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.site-title h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 2em;
+}
+
+.site-title h1 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.site-title .page-subtitle {
+    font-size: 0.9em;
+    color: var(--secondary-color);
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.search-container-header {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.search-container-header input {
+    padding: 8px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    font-size: 0.95em;
+    outline: none;
+    width: 200px;
+    transition: border-color 0.3s ease;
+    background-color: var(--bg-card);
+    color: var(--text-color-dark);
+}
+
+.search-container-header input:focus {
+    border-color: var(--primary-color);
+}
+
+.search-container-header button {
+    padding: 8px 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+}
+
+.search-container-header button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* --- Main Content Layouts --- */
+main {
+    flex-grow: 1;
+    padding: 30px;
+}
+
+/* Home Page Specific (NEW BACKGROUND & ANIMATIONS) */
+.home-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 150px);
+    background-color: var(--indigo-dye); /* NEW: Deep blue background */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 15px var(--shadow-card);
+    position: relative; /* For pseudo-elements */
+    overflow: hidden; /* To contain the bubbles */
+    color: white; /* NEW: Light text on dark background */
+}
+
+/* --- ANIMATIONS FOR HOME CONTENT --- */
+
+/* Light Rays / Caustics Effect */
+@keyframes underwater-light {
+    0% { background-position: 0% 0%, 50% 50%, 100% 100%; }
+    100% { background-position: 100% 100%, 0% 0%, 50% 50%; }
+}
+
+/* Bubbles Effect */
+@keyframes bubbles {
+    0% { transform: translateY(0) scale(0); opacity: 0; }
+    20% { opacity: 0.8; transform: scale(1); }
+    80% { opacity: 0.8; transform: translateY(-70vh) scale(1.2); }
+    100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+}
+
+/* Underwater Light Rays on home-content :before */
+.home-content::before {
+    content: '';
+    position: absolute; /* Position relative to home-content */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0; /* Below content but above background */
+
+    /* Simulating light rays/caustics with radial gradients */
+    background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 15%),
+                      radial-gradient(circle at 80% 90%, rgba(255, 255, 255, 0.05) 0%, transparent 10%),
+                      radial-gradient(circle at 40% 50%, rgba(255, 255, 255, 0.07) 0%, transparent 12%);
+    background-size: 1500px 1500px, 1200px 1200px, 1800px 1800px;
+    animation: underwater-light 60s linear infinite;
+}
+
+/* Bubbles on home-content :after */
+.home-content::after {
+    content: '';
+    position: absolute; /* Position relative to home-content */
+    top: 100%; /* Start from bottom of home-content */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1; /* Above light rays */
+
+    /* Simulating bubbles with radial gradients */
+    background-image: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.7) 1px, transparent 1px),
+                      radial-gradient(circle at 70% 0%, rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+                      radial-gradient(circle at 45% 0%, rgba(255, 255, 255, 0.6) 1px, transparent 1px);
+    background-size: 90px 90px, 120px 120px, 50px 50px; /* Bigger bubbles */
+    animation: bubbles 10s linear infinite;
+    animation-delay: 0s, 3.3s, 6.6s;
+}
+
+
+.home-content .tagline {
+    font-size: 1.4em;
+    color: var(--mindaro); /* NEW: Very light green for tagline */
+    margin-bottom: 40px;
+    max-width: 600px;
+    position: relative; /* Ensure text is above animations */
+    z-index: 2;
+}
+
+.category-buttons {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative; /* Ensure buttons are above animations */
+    z-index: 2;
+}
+
+.category-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 280px;
+    height: 200px;
+    background-color: var(--light-green); /* NEW: Light green for buttons */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px var(--shadow-card);
+    text-decoration: none;
+    color: var(--indigo-dye); /* NEW: Dark text for buttons */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Lighter border for buttons */
+}
+
+.category-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.category-button h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--emerald); /* Accent green for button headings */
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.category-button p {
+    font-size: 0.95em;
+    color: var(--lapis-lazuli); /* Darker blue for button sub-text */
+}
+
+/* List Page Specific */
+.list-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 20px;
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px var(--shadow-subtle);
+}
+
+.list-card {
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--shadow-subtle);
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text-color-dark);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.list-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px var(--shadow-card);
+}
+
+.list-card-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    background-color: var(--bg-light);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4em;
+    color: var(--primary-color);
+}
+
+.list-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+    color: var(--primary-color);
+    margin: 15px 10px 5px;
+}
+
+.list-card p {
+    font-size: 0.85em;
+    color: var(--text-color-light);
+    margin: 0 10px 15px;
+    height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Detail Page Specific */
+.detail-content {
+    padding: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px var(--shadow-card);
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: var(--secondary-color);
+}
+
+.detail-card {
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.detail-image-container {
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px var(--shadow-subtle);
+    background-color: var(--bg-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.detail-info {
+    flex: 2;
+    min-width: 300px;
+}
+
+.detail-info h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--accent-color);
+    font-size: 2.2em;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.detail-info p {
+    margin-bottom: 10px;
+    color: var(--text-color-dark);
+}
+
+.detail-info p strong {
+    color: var(--primary-color);
+}
+
+/* --- Search Results Overlay (for home page and list/detail pages) --- */
+.search-results-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.search-results-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.search-results-content {
+    background-color: var(--bg-card);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    text-align: left;
+    color: var(--text-color-dark);
+}
+
+.search-results-content h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.close-results {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: var(--secondary-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-results:hover {
+    color: #dc3545;
+}
+
+#results-display {
+    padding-top: 10px;
+}
+
+.placeholder-text-search {
+    color: var(--text-color-light);
+    font-style: italic;
+    text-align: center;
+}
+
+.loading-message, .error-message {
+    text-align: center;
+    font-style: italic;
+    color: var(--text-color-light);
+}
+.error-message {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+    background-color: var(--header-bg);
+    border-top: 1px solid var(--border-color);
+    color: var(--secondary-color);
+    font-size: 0.85em;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .main-container {
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+        gap: 10px;
+    }
+
+    .search-container-header {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .search-container-header input {
+        width: auto;
+        flex-grow: 1;
+    }
+
+    .home-content .tagline {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+    }
+
+    .category-buttons {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .list-content {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+
+    .list-card p {
+        height: auto;
+        text-overflow: clip;
+    }
+
+    .detail-card {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .detail-image-container {
+        min-width: unset;
+        max-width: 100%;
+    }
+
+    .detail-info h2 {
+        font-size: 1.8em;
+    }
+}
+
+/* Adjust animation speeds for smaller screens */
+@media (max-width: 600px) {
+    .home-content::before { animation-duration: 40s; }
+    .home-content::after { animation-duration: 7s; }
+}

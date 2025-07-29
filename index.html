@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aquarium Info Hub - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-container">
+        <header class="navbar">
+            <div class="site-title">
+                <h1>Aquarium Info Hub</h1>
+            </div>
+            <div class="search-container-header">
+                <input type="text" id="search-input" placeholder="Search fish or plants...">
+                <button id="search-button">🔍</button>
+            </div>
+        </header>
+
+        <main class="home-content">
+            <p class="tagline">Your Comprehensive Guide to Freshwater Aquariums</p>
+
+            <div class="category-buttons">
+                <a href="fishes.html" class="category-button fish-button">
+                    <h2>🐠 Fish Species</h2>
+                    <p>Explore detailed profiles of freshwater fish.</p>
+                </a>
+                <a href="plants.html" class="category-button plant-button">
+                    <h2>🌿 Aquarium Plants</h2>
+                    <p>Discover plants for a thriving aquatic environment.</p>
+                </a>
+                </div>
+
+            <div class="search-results-overlay" id="search-results-overlay">
+                <div class="search-results-content">
+                    <button class="close-results" id="close-search-results">&times;</button>
+                    <h2>Search Results</h2>
+                    <div id="results-display">
+                        <p class="placeholder-text-search">Your search results will appear here.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Aquarium Info Hub</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

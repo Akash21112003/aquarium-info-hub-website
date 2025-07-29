@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aquarium Info Hub - Fish Species</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-container">
+        <header class="navbar">
+            <div class="site-title">
+                <h1><a href="index.html">Aquarium Info Hub</a></h1>
+                <p class="page-subtitle">Fish Species</p>
+            </div>
+            <div class="search-container-header">
+                <input type="text" id="search-input" placeholder="Search fish or plants...">
+                <button id="search-button">🔍</button>
+            </div>
+        </header>
+
+        <main class="list-content">
+            <div class="fish-list" id="fish-list">
+                <p class="loading-message">Loading fish species...</p>
+            </div>
+            <div class="search-results-overlay" id="search-results-overlay">
+                <div class="search-results-content">
+                    <button class="close-results" id="close-search-results">&times;</button>
+                    <h2>Search Results</h2>
+                    <div id="results-display">
+                        <p class="placeholder-text-search">Your search results will appear here.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Aquarium Info Hub</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
